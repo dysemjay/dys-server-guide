@@ -112,167 +112,167 @@ server.cfg is the primary configuration file for SRCDS, and will control most of
 
 The following is a list of common console variables, and a description (Note there are certain ConVars that will be covered in specialized sections):
 
-* exec <Name of file in <Name of server directory>/dystopia/cfg>  
+* `exec <Name of file in <Name of server directory>/dystopia/cfg>`  
   Executes a configuration file (in a similar way to server.cfg). This can be useful for separating configuration in to multiple files.
 
-* hostname "<Name of server>" Default: ""  
+* `hostname "<Name of server>"` Default: ""  
   Sets the name of the server
 
-* sv_pure <-1, 0, 1, or 2> Default: 0  
+* `sv_pure <-1, 0, 1, or 2>` Default: 0  
   Determines to what extent a client will be permitted to use files that differ from their serverside counterpart. For most cases in Dystopia, this can just be set to 2. The behavior of this ConVar seems bugged, or otherwise unclear. Much of this documentation is based on conjecture without much testing; more information regarding its behavior can be found in the known bugs section.  
   -1: No restrictions on clientside files. Apply no rules.  
-   0: Minimal restriction on clientside files. Apply rules in <Name of server directory>/dystopia/cfg/trusted_keys_base.txt.  
-   1: Strict restriction on clientside files. Apply rules in <Name of server directory>/dystopia/cfg/pure_server_full.txt, <Name of server directory>/dystopia/cfg/trusted_keys_base.txt, and in <Name of server directory>/dystopia/pure_server_whitelist.txt.  
-   2: Strictest restriction on clientside files. Apply rules in <Name of server directory>/dystopia/cfg/pure_server_full.txt and in <Name of server directory>/dystopia/cfg/trusted_keys_base.txt.
+   0: Minimal restriction on clientside files. Apply rules in `<Name of server directory>/dystopia/cfg/trusted_keys_base.txt`.  
+   1: Strict restriction on clientside files. Apply rules in `<Name of server directory>/dystopia/cfg/pure_server_full.txt`, `<Name of server directory>/dystopia/cfg/trusted_keys_base.txt`, and in `<Name of server directory>/dystopia/pure_server_whitelist.txt`.  
+   2: Strictest restriction on clientside files. Apply rules in `<Name of server directory>/dystopia/cfg/pure_server_full.txt` and in `<Name of server directory>/dystopia/cfg/trusted_keys_base.txt`.
 
-* sv_lan <0 or 1> Default: 0  
+* `sv_lan <0 or 1>` Default: 0  
   If set to 1, the server will be run in LAN mode, which should prevent users from joining, or seeing the server if they are not in your local area network. However, that feature appears to be bugged; please check the known bugs section for more information. This will also prevent banning of players by SteamID, and disable VAC security.
 
-* rcon_password "<password>" Default: ""  
+* `rcon_password "<password>"` Default: ""  
   Sets the password for RCON authentication.
 
-* sv_rcon_min_failuretime <decimal value> Default: 30 Min: 1  
+* `sv_rcon_min_failuretime <decimal value>` Default: 30 Min: 1  
   Time in seconds to track failed RCON authentications for sv_rcon_minfailures.
 
-* sv_rcon_minfailures <number> Default: 5 Min: 1 Max: 20  
+* `sv_rcon_minfailures <number>` Default: 5 Min: 1 Max: 20  
   Number of times an IP address can fail RCON authentication within the period specified by sv_rcon_min_failuretime before the next failed attempt results in a ban.
 
-* sv_rcon_maxfailures <number> Default: 10 Min: 1 Max: 20  
+* `sv_rcon_maxfailures <number>` Default: 10 Min: 1 Max: 20  
   Number of times an IP address can fail RCON authentication before the next failed attempt will result in a ban. The failure counter for this ConVar is persistent until server shutdown, and remains after a player is banned. (So if a player waits out the ban period, then performs another failed RCON authentication, they are automatically banned again)
 
-* sv_rcon_banpenalty <decimal value> Default: 0 Min: 0  
+* `sv_rcon_banpenalty <decimal value>` Default: 0 Min: 0  
   Time in minutes to ban IP addresses that fail RCON authentication.
 
-* sv_rcon_whitelist_address "<IP Address>"  
+* `sv_rcon_whitelist_address "<IP Address>"`  
   Specifies a SINGLE IP address from which failed RCON authentications can never result in a ban.
 
-* sv_password "<password>" Default: ""  
+* `sv_password "<password>"` Default: ""  
   Sets the password to join the server.
 
-* sv_allowdownload <0 or 1> Default: 1  
+* `sv_allowdownload <0 or 1>` Default: 1  
   Allows downloading of content (such as maps) directly from the server if set to 1. Downloading directly from the server is VERY SLOW, and the source specified by sv_downloadurl will take precedence.
 
-* sv_allowupload <0 or 1> Default: 1  
+* `sv_allowupload <0 or 1>` Default: 1  
   Allows uploading of content from the client, to the server if set to 1. Primarily used for sprays.
 
-* sv_downloadurl "<url>" Default: ""  
+* `sv_downloadurl "<url>"` Default: ""  
   Download link for separate server to retrieve content from. Should work for http, and https.
 
-* log on  
+* `log on`  
   Enables server logs.
 
-* sv_logbans <0 or 1> Default: 0  
+* `sv_logbans <0 or 1>` Default: 0  
   Enables logging of bans from the server if set to 1.
 
-* sv_logecho <0 or 1> Default: 1  
+* `sv_logecho <0 or 1>` Default: 1  
   If set to 1, then whenever information is written to server logs, it will also be printed to the console. This can potentially make the console output quite messy.
 
-* sv_logfile <0 or 1> Default: 1  
+* `sv_logfile <0 or 1>` Default: 1  
   Enables logging to files if set to 1. The other case where server logs are written, is to a remote server.
 
-* sv_log_onefile <0 or 1>  Default: 0  
+* `sv_log_onefile <0 or 1>`  Default: 0  
   All server logs are written to a single file if set to 1.
 
-* sv_rcon_log <0 or 1> Default: 1  
+* `sv_rcon_log <0 or 1>` Default: 1  
   Enable logging of RCON connections if set to 1.
 
-* sv_logsdir <Name of directory in <Name of server directory>/dystopia> Default: "logs"  
+* `sv_logsdir <Name of directory in <Name of server directory>/dystopia>` Default: "logs"  
   Set directory for log files to be stored to.
 
-* dys_log_stat_events <0 or 1> Default: 1  
+* `dys_log_stat_events <0 or 1>` Default: 1  
   Enable logging of events pertaining to Dystopia Stats, if set to 1.
 
-* con_logfile <Name of file in <Name of server directory>> Default: ""  
+* `con_logfile <Name of file in <Name of server directory>>` Default: ""  
   If a file name is specified, console output will be logged to that file.
 
-* con_timestamp <0 or 1> Default: 0  
+* `con_timestamp <0 or 1>` Default: 0  
   Information in the file specified by con_logfile will be prefixed with timestamps.
 
-* logaddress_add <ip:port>  
+* `logaddress_add <ip:port>`  
   Send logging information to the server specified by ip and port.
 
-* sv_cheats <0 or 1> Default: 0  
+* `sv_cheats <0 or 1>` Default: 0  
   Enables various cheat commands, and should also allow for a more detailed net_graph to be shown to a client, if set to 1. Can be useful for server debugging.
 
-* maxplayers <number> Default: 16  
+* `maxplayers <number>` Default: 16  
   Maximum number of players on the server. This number is usually 16 for Dystopia.
 
-* mp_autoteambalance <0 or 1> Default: 1  
+* `mp_autoteambalance <0 or 1>` Default: 1  
   If set to 1, then the server can automatically balance the teams.
 
-* mp_rounds <number> Default: 2  
+* `mp_rounds <number>` Default: 2  
   Number of rounds before a map change. This number is usually 2 for Dystopia. Setting it to 0 should be equivalent to setting it to 1. (Only 1 round before the map changes)
 
-* mp_startdelay <number> Default: 40  
+* `mp_startdelay <number>` Default: 40  
   Specifies the delay before players spawn, after a map has loaded. A common purpose for this is to provide time for all players to have connected before a round will begin.
 
-* mp_timelimit <number> Default: 0  
+* `mp_timelimit <number>` Default: 0  
   Timelimit per round in minutes. This number is usually 20 for Dystopia. Setting this to 0 will also cause the timelimit to be 20.
 
-* mp_stopwatch <0 or 1> Default: 0  
+* `mp_stopwatch <0 or 1>` Default: 0  
   If set to 1, then there will be twice the number of rounds specified by mp_rounds per map. When a round ends, the timelimit of the next round is set to the time taken to complete the previous. This setting is usually used in pick up games, and other competitive settings.
 
-* mp_friendlyfire <0 or 1> Default: 1  
+* `mp_friendlyfire <0 or 1>` Default: 1  
   Enables friendly fire, if set to 1. Friendly fire is usually on for Dystopia.
 
-* mp_ceasefire <0 or 1> Default: 0  
+* `mp_ceasefire <0 or 1>` Default: 0  
   Prevents players from attacking, if set to 1.
 
-* dys_melee_only <0 or 1> Default: 0  
+* `dys_melee_only <0 or 1>` Default: 0  
   If set to 1, then prevent players from firing, and make melee do no damage to health (it can still damage armor however).
 
-* mp_chattime <Decimal value> Default: 30 Min: 1.000000 Max: 120.000000  
+* `mp_chattime <Decimal value>` Default: 30 Min: 1.000000 Max: 120.000000  
   Specifies a waiting period in seconds after a round ends, in which players can chat.
 
-* sv_alltalk <0 or 1> Default: 0  
+* `sv_alltalk <0 or 1>` Default: 0  
   If set to 1, then voice chat can be heard by all players, otherwise voice chat can only be heard by team mates.
 
-* mp_punishvotes <number> Default: 5  
+* `mp_punishvotes <number>` Default: 5  
   Number of punish votes by a teamkilled players, before the teamkiller is banned from the server. Disabled if set to 0.
 
-* mp_punishbantime <number> Default: 30  
+* `mp_punishbantime <number>` Default: 30  
   Time in minutes for a player to be banned by mp_punishvotes. They will only be kicked from the server if this is set to 0.
 
-* mp_allowvoting <0 or 1> Default: 1  
+* `mp_allowvoting <0 or 1>` Default: 1  
   Players may use callvote commands if this is set to 1.
 
-* mp_allowvoting_map <0 or 1> Default: 1  
+* `mp_allowvoting_map <0 or 1>` Default: 1  
   If set to 1, players may callvote maps.
 
-* mp_allowvoting_balanceteams <0 or 1> Default: 1  
+* `mp_allowvoting_balanceteams <0 or 1>` Default: 1  
   If set to 1, players may callvote team balance.
 
-* mp_allowvoting_swapteams <0 or 1> Default: 1  
+* `mp_allowvoting_swapteams <0 or 1>` Default: 1  
   If set to 1, players may callvote to swap their teams.
 
-* mp_allowvoting_maprestart <0 or 1> Default: 1  
+* `mp_allowvoting_maprestart <0 or 1>` Default: 1  
   If set to 1, players may callvote map restart.
 
-* mp_allowvoting_kick <0 or 1> Default: 1  
+* `mp_allowvoting_kick <0 or 1>` Default: 1  
   If set to 1, players may callvote to kick, or ban a player.
 
-* mp_allowvoting_forcespec <0 or 1> Default: 1  
+* `mp_allowvoting_forcespec <0 or 1>` Default: 1  
   If set to 1, players may callvote to force a player onto the spectators team.
 
-* mp_allowvoting_meleeonly <0 or 1> Default: 0  
+* `mp_allowvoting_meleeonly <0 or 1>` Default: 0  
   If set to 1, players may callvote to toggle the dys_melee_only ConVar.
 
-* mp_allowvoting_stopwatch <0 or 1> Default: 1  
+* `mp_allowvoting_stopwatch <0 or 1>` Default: 1  
   If set to 1, players may callvote to toggle the mp_stopwatch ConVar.
 
-* mp_votepct <number> Default: 51  
+* `mp_votepct <number>` Default: 51  
   Specifies the percentage of players necessary for a callvote to pass.
 
-* mp_votekick_bantime <number> Default: 30  
+* `mp_votekick_bantime <number>` Default: 30  
   Specifies time in minutes for player to be banned by callvote ban. If set to 0, then the player will only be kicked from the server.
 
-* sv_idlekick <0, 1, or 2> Default: 1  
+* `sv_idlekick <0, 1, or 2>` Default: 1  
   Determines whether players should be kicked for idling.  
   0: Never kick players for idling.  
   1: Kick non-spectator players for idling.  
   2: Kick any player for idling.
 
-* sv_idlekick_timer <decimal value> Default: 300 Min: 60  
+* `sv_idlekick_timer <decimal value>` Default: 300 Min: 60  
   Time in seconds a player can idle before they are kicked.
 
 Finally, I will describe a method that I frequently use for managing server configuration files for different purposes. Let's say that I have the configuration files: standard.cfg, and pug.cfg for public games, and pickup games respectively. In order to use one, it's contents would be written to server.cfg with a simple `cat <filename> > server.cfg`, then the server would be restarted with `map <name of map>` from the server console, to completely load the new settings.
@@ -283,9 +283,9 @@ Map Management
 
 This section will describe the method of installing, and managing maps for the server.
 
-* The map files should be stored in <Name of server directory>/dystopia/maps, and should have the extension ".bsp". Note that serverside map files CANNOT be compressed, unlike the clientside copies.
+* The map files should be stored in `<Name of server directory>/dystopia/maps`, and should have the extension ".bsp". Note that serverside map files CANNOT be compressed, unlike the clientside copies.
 
-* If there is not a file named "maplist.txt" in <Name of server directory>/dystopia> then it should be created, and the name of each map you wish to be usable should be written to the file, excluding the extension. Each name should be separated by a newline. Note that the precise functionality of maplist.txt seems rather poorly defined; this will be discussed in greater detail in the known bugs section. The following line of shellscript run from <Name of server directory>/dystopia can be used to populate maplist.txt: `find maps -iname "*.bsp" -type f -maxdepth 1 -exec basename {} .bsp \; | sort > maplist.txt`
+* If there is not a file named "maplist.txt" in `<Name of server directory>/dystopia>` then it should be created, and the name of each map you wish to be usable should be written to the file, excluding the extension. Each name should be separated by a newline. Note that the precise functionality of maplist.txt seems rather poorly defined; this will be discussed in greater detail in the known bugs section. The following line of shellscript run from `<Name of server directory>/dystopia` can be used to populate maplist.txt: `find maps -iname "*.bsp" -type f -maxdepth 1 -exec basename {} .bsp \; | sort > maplist.txt`
 
 * Finally, you must specify a mapcycle file. This is done by setting the "mapcyclefile" ConVar; by default it is set to "mapcycle.txt". The mapcycle file controls the order in which maps are loaded by the server. If the mapcycle file does not exist, or is empty, then whatever map is currently loaded, will simply be reloaded. Names of maps are stored in a similar fashion to the maplist file, and are loaded in descending order from top to bottom. If the end of the file is reached, or the current map is not included in the file, then the first map is chosen again.
 
@@ -293,13 +293,13 @@ This section will describe the method of installing, and managing maps for the s
 Starting the Server
 ----------------------------------
 
-This section will describe a procedure for starting the server, and some command line parameters that may be passed during this process. SRCDS should be started with a shell script called "srcds_run", located in <Name of server directory>. In my opinion, the original script has some features that do not serve much of a purpose, or do not work properly. A revised version that I wrote can be found here: https://github.com/dysemjay/dys-server-guide/blob/master/srcds_run_m The primary differences are: reliance on the -debugcmds parameter to pass arguments to gdb, a revised help message, and a little refactoring. More information can be found in the readme of the repository.
+This section will describe a procedure for starting the server, and some command line parameters that may be passed during this process. SRCDS should be started with a shell script called "srcds_run", located in `<Name of server directory>`. In my opinion, the original script has some features that do not serve much of a purpose, or do not work properly. A revised version that I wrote can be found here: https://github.com/dysemjay/dys-server-guide/blob/master/srcds_run_m The primary differences are: reliance on the -debugcmds parameter to pass arguments to gdb, a revised help message, and a little refactoring. More information can be found in the readme of the repository.
 
 When SRCDS is started, the server command line interface will opened. This can pose a problem when attempting to switch between the server console, and the shell prompt. A common method of circumventing this is to start SRCDS with the screen command. The session can be detached from (to return to the shell prompt) by pressing Ctrl-a, then Ctrl-d. The session can be reattached with the command `screen -r`
 
 If your server is behind NAT (Such as in the case of a SOHO network with one public IP address, and an internal network in a private addressing scheme), then you will probably want to bind SRCDS to the private address of the system, the forward the port it is listening on from your router.
 
-* Descriptions for some parameters can be found by running `./srcds_run -help` in <Name of server directory>.
+* Descriptions for some parameters can be found by running `./srcds_run -help` in `<Name of server directory>`.
 
 * ConVars can also be specified from the command line by preceding them with a '+' instead of a '-'. Note that ConVars specified in server.cfg will take precedence over these.
 
@@ -307,24 +307,24 @@ If your server is behind NAT (Such as in the case of a SOHO network with one pub
 
 In my experience, the commonly used ConVars are:
 
-* -game <Name of game directory>  
+* `-game <Name of game directory>`  
   In this case, it should always be "dystopia"
 
-* -ip <IP Address>  
+* `-ip <IP Address>`  
   This is the IP address for SRCDS to bind to.
 
-* -port <number> Default: 27015  
+* `-port <number>` Default: 27015  
   This is the port number for SRCDS to bind to. TCP is used for RCON, UDP is used for general game traffic. Note that SRCDS can also bind to different ports; this will be further discussed in iptables Hardening Tips.
 
-* -debug  
+* `-debug`  
   This will cause GDB to be run to collect some debugging information in the event of a crash. It actually will not slow down the server itself, or otherwise cause a change in its behavior.
 
-* -debuglog <Name of file in <Name of server directory>>  
+* `-debuglog <Name of file in <Name of server directory>>`  
   This specifies the file for debugging output generated by the -debug parameter to be stored in.
 
 Finally, an example command to start SRCDS is:
 
-screen ./srcds_run -game dystopia -ip 192.168.1.103 -port 27025 -debug +map dys_broadcast
+    screen ./srcds_run -game dystopia -ip 192.168.1.103 -port 27025 -debug +map dys_broadcast
 
 
 Working From the Server Console/Common Commands
@@ -336,40 +336,40 @@ ConVars can be set from the command line interface in a similar manner to in ser
 
 The following is a list of common commands, and their descriptions (Again, certain commands may be listed in a more specific section):
 
-* find <string>  
-  Search for commands and ConVars which contain <string> in their name or description, then list them.
+* `find <string>`  
+  Search for commands and ConVars which contain `<string>` in their name or description, then list them.
 
-* cvarlist  
+* `cvarlist`  
   Dumps a list of all console commands and variables. Can also be used like `cvarlist log <Name of file in <Name of server directory>/dystopia>` to dump them to a file, in the CSV format.
 
-* status  
+* `status`  
   List general information about the server, including hostname, version, IP addressing, SteamID, current map, and players.
 
-* stats  
+* `stats`  
   List general performance information about the server, including CPU usage, bandwidth usage, uptime, number of map changes, FPS, current number of players, and total number of connections.
 
-* maps <substring>
-  Displays available maps which contain <substring> in their name. Entering `maps *` will cause all maps to be displayed.
+* `maps <substring>`
+  Displays available maps which contain `<substring>` in their name. Entering `maps *` will cause all maps to be displayed.
 
-* map <name of map>  
+* `map <name of map>`  
   Load a map of a certain name (Not including the filename extension). Note that this should also effectively restart the server, and reload configuration. It appears that the command will also load a map if the argument is a substring of its name. If there are multiple names that contain the substring, then the one that comes first, in alphabetical order will take precedence.
 
-* map_restart  
+* `map_restart`  
   Restart the current map, note that this does not restart the server in the same way that `map <name of current map>` would.
 
-* balanceteams  
+* `balanceteams`  
   Balances teams through a similar algorithm to that used by autobalance.
 
-* swap_teams  
+* `swap_teams`  
   Swaps player teams. The effect is equivalent to that performed by callvote swap_teams.
 
-* kick <Name of player>  
+* `kick <Name of player>`  
   Kicks a player from the server by name. Note that the name matching is case insensitive.
 
-* kickid <userid>  
+* `kickid <userid>`  
   Kick a player from the server by userid.
 
-* say <string>  
+* `say <string>`  
   Causes a message to be printed to global chat in game. In this case, the source will be listed as "Console". Note that, unlike the client side say command, the server side say command, will include quotation marks in the printed message. 
 
 
@@ -393,30 +393,30 @@ exec banned_user.cfg
 
 The following is a list of commands associated with banning players:
 
-* banid <time> <SteamID or UserID of player> [kick]  
-  Ban the account specified a given SteamID or UserID for <time> minutes. If the kick argument is added, the account will also be kicked if connected. This will not work if sv_lan is set to 1.
+* `banid <time> <SteamID or UserID of player> [kick]`  
+  Ban the account specified a given SteamID or UserID for `<time>` minutes. If the kick argument is added, the account will also be kicked if connected. This will not work if sv_lan is set to 1.
 
-* addip <time> <IP Address of player>  
-  Ban the IP address for <time> minutes.
+* `addip <time> <IP Address of player>`  
+  Ban the IP address for `<time>` minutes.
 
-* removeip <IP Address of player>  
+* `removeip <IP Address of player>`  
   Remove an IP address from the ban list.
 
-* removeid <Steam ID of player>  
+* `removeid <Steam ID of player>`  
   Remove a Steam ID from the ban list.
 
-* writeip  
+* `writeip`  
   Write the currently, permanently banned IP addresses to banned_ip.cfg. Note that this will completely overwrite the
 file.
 
-* writeid  
+* `writeid`  
   Write the currently banned Steam IDs to banned_user.cfg. Note that this will
 completely overwrite the file.
 
-* listid  
+* `listid`  
   List currently banned Steam IDs.
 
-* listip  
+* `listip`  
   List currently banned IP addresses.
 
 
@@ -425,25 +425,25 @@ Rate Settings
 
 The purpose of this section is to list ConVars associated with rate settings, and describe how they might be configured for your system and connection.
 
-* sv_mincmdrate <number> Default: 10  
+* `sv_mincmdrate <number>` Default: 10  
   Sets the minimum number of command packets that can be sent to the server each second. 0 is unlimited.
 
-* sv_maxcmdrate <number> Default: 66  
+* `sv_maxcmdrate <number>` Default: 66  
   Sets the maximum number of command packets that can be sent to the server each second. 0 is unlimited.
 
-* sv_minupdaterate <number> Default: 10  
+* `sv_minupdaterate <number>` Default: 10  
   Sets the minimum number of update packets that can be sent from the server each second. 0 is unlimited.
 
-* sv_maxupdaterate <number> Default: 66  
+* `sv_maxupdaterate <number>` Default: 66  
   Sets the maximum number of update packets that can be sent from the server each second. 0 is unlimited.
 
-* sv_client_cmdrate_difference <number> Default: 20  
+* `sv_client_cmdrate_difference <number>` Default: 20  
   Specifies the number of packets the difference between a client's command rate and update rate will fall within.
 
-* sv_minrate <number> Default: 3500  
+* `sv_minrate <number>` Default: 3500  
   Minimum upload bandwidth usage for each connection in bytes. 0 is unlimited
 
-* sv_maxrate <number> Default: 0  
+* `sv_maxrate <number>` Default: 0  
   Maximum upload bandwidth usage for each connection in bytes. 0 is unlimited
 
 So note that these ConVars are closely related to the clientside Convars: cl_cmdrate, cl_updaterate, and rate. They allow the server to negotiate the parameters of a player's connection. The updaterate, and cmdrate should not exceed the server's tickrate, so the default maximum should be sufficient in most situations. An important consideration when setting the minimum is that many players will just use the default rate settings. When setting sv_client_cmdrate_difference, bear in mind that a common player's upload bandwidth might be lower than their download bandwidth, so allowing for there to be some difference between their command rate and update rate can be beneficial.
@@ -474,11 +474,11 @@ In order to illustrate how stateful packet inspection in the Linux kernel works,
 
 The server (you can normally recognize it by the process associated with the file srcds_linux) will communicate on a number of ports:
 
-* <User specified listening port> - TCP, UDP - By default, this is 27015. This port listens with TCP for RCON, and with UDP for general game traffic. TCP can be blocked completely if you do not intend to use the standard RCON, otherwise the port should be open to unsolicited connections for both TCP, and UDP.
+* `<User specified listening port>` - TCP, UDP - By default, this is 27015. This port listens with TCP for RCON, and with UDP for general game traffic. TCP can be blocked completely if you do not intend to use the standard RCON, otherwise the port should be open to unsolicited connections for both TCP, and UDP.
 
-* <32768 - 61000?> to 192.198.217.32:27055 - TCP - This connection is associated with Dystopia Stats. It is initiated by the server, so it is only necessary to allow outgoing traffic, and established incoming traffic for it. It is not entirely clear what precise range of ports can be chosen to send outbound packets from; if you are more knowledgeable about this, I would love to hear some clarification. My rationale for choosing this range was that it is the Linux standard for ephemeral connections.
+* `<32768 - 61000?> to 192.198.217.32:27055` - TCP - This connection is associated with Dystopia Stats. It is initiated by the server, so it is only necessary to allow outgoing traffic, and established incoming traffic for it. It is not entirely clear what precise range of ports can be chosen to send outbound packets from; if you are more knowledgeable about this, I would love to hear some clarification. My rationale for choosing this range was that it is the Linux standard for ephemeral connections.
 
-* 26901 to <IP Address registered to Valve corporation>:<27016 - 27021?> - UDP - This connection is most likely associated with VAC, and the Steam server browser. It is initiated by the server, so it is only necessary to allow outgoing traffic, and established incoming traffic for it. My description of the port range used by this connection is based on observation, rather than formal documentation. Please feel free to offer correction or clarification.
+* `26901 to <IP Address registered to Valve corporation>:<27016 - 27021?>` - UDP - This connection is most likely associated with VAC, and the Steam server browser. It is initiated by the server, so it is only necessary to allow outgoing traffic, and established incoming traffic for it. My description of the port range used by this connection is based on observation, rather than formal documentation. Please feel free to offer correction or clarification.
 
 So, the primary considerations for firewall configuration are:
 
@@ -553,7 +553,7 @@ The purpose of this section is to list a number of known bugs, or quirks in SRCD
 
 * The sv_lan ConVar does not prevent the server being accessed from outside the local area network. Binding SRCDS to a LAN IP address, then forwarding the port being listened on, will cause the server to be accessible from outside the LAN, and visible from the internet tab in the server browser. A more sane way for sv_lan to behave, is to prevent the server from being accessed by a host outside the subnet of the bound IP address.
 
-* The functionality of the sv_pure ConVar is very unclear. Many of the files that it attempts to load are not present with a clean install of Dystopia; the only present one is <Name of server directory>/dystopia/pure_server_whitelist.txt. It also appears that this file can be loaded from <Name of server directory>/dystopia/cfg as well. Generally speaking, the files loaded by a given sv_pure setting do not match those specified in the description of the ConVar provided by the server. In actuality, I have not done much testing with sv_pure, as I have almost always set it to 2 in a production environment.
+* The functionality of the sv_pure ConVar is very unclear. Many of the files that it attempts to load are not present with a clean install of Dystopia; the only present one is `<Name of server directory>/dystopia/pure_server_whitelist.txt`. It also appears that this file can be loaded from `<Name of server directory>/dystopia/cfg` as well. Generally speaking, the files loaded by a given sv_pure setting do not match those specified in the description of the ConVar provided by the server. In actuality, I have not done much testing with sv_pure, as I have almost always set it to 2 in a production environment.
 
   Another oddity is that sv_pure seems to always be set to 0 upon server start. This occurs after ConVars passed from the command line are processed, but before server.cfg (and the map) is loaded. As far as I know, sv_pure must be set before a map loads, in order to take effect. The result is that sv_pure will effectively be 0 for the very first map loaded by the server; it should work correctly for subsequent maps.
 
