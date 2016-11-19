@@ -1,0 +1,6 @@
+bt
+info locals
+info registers
+info sharedlibrary
+disassemble
+info frame
