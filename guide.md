@@ -5,7 +5,7 @@ Dystopia 1.4.1 Server Setup Guide
 Description
 ----------------------------------
 
-A guide to setting up a dedicated server for Dystopia 1.4.1 in a Linux environment. Although these instructions are written specifically for, and tested in Linux, many of them should also be applicable in Windows. Many of the steps are also likely to remain the same in the event that Dystopia is updated again. The following is a link to sample configuration, and other supplementary files for this tutorial: <TODO: link>
+A guide to setting up a dedicated server for Dystopia 1.4.1 in a Linux environment. Although these instructions are written specifically for, and tested in Linux, many of them should also be applicable in Windows. Many of the steps are also likely to remain the same in the event that Dystopia is updated again. The following is a link to sample configuration, and other supplementary files for this tutorial: https://github.com/dysemjay/dys-server-guide
 
 
 Introduction
@@ -293,7 +293,7 @@ This section will describe the method of installing, and managing maps for the s
 Starting the Server
 ----------------------------------
 
-This section will describe a procedure for starting the server, and some command line parameters that may be passed during this process. SRCDS should be started with a shell script called "srcds_run", located in <Name of server directory>. In my opinion, the original script has some features that do not serve much of a purpose, or do not work properly. A revised version that I wrote can be found here: <TODO: Link> The primary differences are: reliance on the -debugcmds parameter to pass arguments to gdb, a revised help message, and a little refactoring. More information can be found in the readme of the repository.
+This section will describe a procedure for starting the server, and some command line parameters that may be passed during this process. SRCDS should be started with a shell script called "srcds_run", located in <Name of server directory>. In my opinion, the original script has some features that do not serve much of a purpose, or do not work properly. A revised version that I wrote can be found here: https://github.com/dysemjay/dys-server-guide/blob/master/srcds_run_m The primary differences are: reliance on the -debugcmds parameter to pass arguments to gdb, a revised help message, and a little refactoring. More information can be found in the readme of the repository.
 
 When SRCDS is started, the server command line interface will opened. This can pose a problem when attempting to switch between the server console, and the shell prompt. A common method of circumventing this is to start SRCDS with the screen command. The session can be detached from (to return to the shell prompt) by pressing Ctrl-a, then Ctrl-d. The session can be reattached with the command `screen -r`
 
@@ -307,13 +307,13 @@ If your server is behind NAT (Such as in the case of a SOHO network with one pub
 
 In my experience, the commonly used ConVars are:
 
-* -game <Name of game directory>
+* -game <Name of game directory>  
   In this case, it should always be "dystopia"
 
 * -ip <IP Address>  
   This is the IP address for SRCDS to bind to.
 
-* -port <number> Default: 27015
+* -port <number> Default: 27015  
   This is the port number for SRCDS to bind to. TCP is used for RCON, UDP is used for general game traffic. Note that SRCDS can also bind to different ports; this will be further discussed in iptables Hardening Tips.
 
 * -debug  
@@ -360,7 +360,7 @@ The following is a list of common commands, and their descriptions (Again, certa
 * balanceteams  
   Balances teams through a similar algorithm to that used by autobalance.
 
-* swap_teams
+* swap_teams  
   Swaps player teams. The effect is equivalent to that performed by callvote swap_teams.
 
 * kick <Name of player>  
@@ -393,7 +393,7 @@ exec banned_user.cfg
 
 The following is a list of commands associated with banning players:
 
-* banid <time> <SteamID or UserID of player> [kick]
+* banid <time> <SteamID or UserID of player> [kick]  
   Ban the account specified a given SteamID or UserID for <time> minutes. If the kick argument is added, the account will also be kicked if connected. This will not work if sv_lan is set to 1.
 
 * addip <time> <IP Address of player>  
@@ -567,7 +567,7 @@ The purpose of this section is to list a number of known bugs, or quirks in SRCD
 
   Further evidence to support this is that the SourceMod server addon will prevent the crash if `say ""` is entered. I believe the section of code responsible for this is near the comment that starts with "The server normally won't display empty say commands, but in this case it does" here: https://github.com/alliedmodders/sourcemod/blob/master/core/ChatTriggers.cpp The reason SourceMod does not block all incidences of the empty string condition, is that the check only occurs if the first and last characters are quotes, and the processing performed by SourceMod occurs before that performed by the game.
 
-  One possible method of fixing this bug is by a SourceMod plugin that I wrote (sorry for the self plug). You can find the source code, and some documentation for it here: <TODO: link>
+  One possible method of fixing this bug is by a SourceMod plugin that I wrote (sorry for the self plug). You can find the source code, and some documentation for it here: https://github.com/dysemjay/SayCommandFix
 
 * You may notice a number of intermittant server crashes for no clear reason. These do not happen exceptionally often, and usually do not cause any long term problem, as the server can simply be started again by the srcds_run script. In my experience, they might occur once or twice a week, and the debugging information describes a segmentation fault ocurring in <Name of server directory>/dystopia/bin/server_srv.so. Please feel free to offer any further insight on this.
 
