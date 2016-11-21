@@ -119,7 +119,7 @@ The following is a list of common console variables, and a description (Note the
   Sets the name of the server
 
 * `sv_pure <-1, 0, 1, or 2>` Default: 0  
-  Determines to what extent a client will be permitted to use files that differ from those included with the vanilla game. The behavior of the ConVar seems bugged in many ways. It appears that values 1, and 2 cause equivalent behavior to 0: From a client perspective, it is possible to use non-whitelisted custom content, and sv_pure will actually be reported as 0. More information regarding its behavior can be found in the known bugs section.  
+  Determines to what extent a client will be permitted to use files that differ from those included with the vanilla game. The behavior of the ConVar seems bugged in many ways. It appears that values 1, and 2 cause equivalent behavior to 0: from a client perspective, it is possible to use non-whitelisted custom content, and sv_pure will actually be reported as 0. More information regarding its behavior can be found in the known bugs section.  
 
   -1: No restrictions on clientside files. Apply no rules.  
    0: Minimal restriction on clientside files. Apply rules in `<Name of server directory>/dystopia/cfg/trusted_keys_base.txt`.  
@@ -558,7 +558,7 @@ The purpose of this section is to list a number of known bugs, or quirks in SRCD
 
   Another oddity is that sv_pure seems to always be set to 0 upon server start. This occurs after ConVars passed from the command line are processed, but before server.cfg (and the map) is loaded. As far as I know, sv_pure must be set before a map loads, in order to take effect. The result is that sv_pure will effectively be 0 for the very first map loaded by the server; it should work correctly for subsequent maps.
 
-Finally, as previously mentioned in the description for this ConVar: a setting of 1 one or 2, appears to have equivalent effect to a setting of 0. These settings seem to have no effect on the ability of a client to use custom content. Further, although the server console will report that it is set to the correct value, the client console will report that it is set to 0. A setting of -1 is correctly reported however.
+  Finally, as previously mentioned in the description for this ConVar: a setting of 1 or 2, appears to have equivalent effect to a setting of 0. These settings seem to have no effect on the ability of a client to use custom content. Further, although the server console will report that it is set to the correct value, the client console will report that it is set to 0. A setting of -1 is correctly reported however.
 
 * The precise purpose of the maplist.txt file is unclear, and not well documented. In my experience, the contents of maplist.txt have no effect on the ability to change to a map, or to see it in the list produced by `maps *`. At this point, I am unsure of what its purpose might be, but maintain it is a best practice. Perhaps the intended purpose for maplist.txt is to specify which maps may be loaded by the server (if maplist.txt does not contain a map, an error will be produced when attempting to load it).
 
