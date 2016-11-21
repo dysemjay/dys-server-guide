@@ -119,14 +119,15 @@ The following is a list of common console variables, and a description (Note the
   Sets the name of the server
 
 * `sv_pure <-1, 0, 1, or 2>` Default: 0  
-  Determines to what extent a client will be permitted to use files that differ from their serverside counterpart. For most cases in Dystopia, this can just be set to 2. The behavior of this ConVar seems bugged, or otherwise unclear. Much of this documentation is based on conjecture without much testing; more information regarding its behavior can be found in the known bugs section.  
+  Determines to what extent a client will be permitted to use files that differ from those included with the vanilla game. The behavior of the ConVar seems bugged in many ways. It appears that values 1, and 2 cause equivalent behavior to 0: From a client perspective, it is possible to use non-whitelisted custom content, and sv_pure will actually be reported as 0. More information regarding its behavior can be found in the known bugs section.  
+
   -1: No restrictions on clientside files. Apply no rules.  
    0: Minimal restriction on clientside files. Apply rules in `<Name of server directory>/dystopia/cfg/trusted_keys_base.txt`.  
-   1: Strict restriction on clientside files. Apply rules in `<Name of server directory>/dystopia/cfg/pure_server_full.txt`, `<Name of server directory>/dystopia/cfg/trusted_keys_base.txt`, and in `<Name of server directory>/dystopia/pure_server_whitelist.txt`.  
-   2: Strictest restriction on clientside files. Apply rules in `<Name of server directory>/dystopia/cfg/pure_server_full.txt` and in `<Name of server directory>/dystopia/cfg/trusted_keys_base.txt`.
+   1: Strict restriction on clientside files. Apply rules in `<Name of server directory>/dystopia/cfg/pure_server_full.txt`, `<Name of server directory>/dystopia/cfg/trusted_keys_base.txt`, and in `<Name of server directory>/dystopia/pure_server_whitelist.txt`. This does not appear to work.  
+   2: Strictest restriction on clientside files. Apply rules in `<Name of server directory>/dystopia/cfg/pure_server_full.txt` and in `<Name of server directory>/dystopia/cfg/trusted_keys_base.txt`. This does not appear to work.
 
 * `sv_lan <0 or 1>` Default: 0  
-  If set to 1, the server will be run in LAN mode, which should prevent users from joining, or seeing the server if they are not in your local area network. However, that feature appears to be bugged; please check the known bugs section for more information. This will also prevent banning of players by SteamID, and disable VAC security.
+  If set to 1, the server will be run in LAN mode, which should prevent users from joining, or seeing the server if they are not in your local area network. However, that feature appears to be bugged; please check the known bugs section for more information. This will also prevent banning of players by SteamID, and disable VAC security. Note that if you intend to set this to 1, then it should also be set from the command prompt. Othwerwise, it will not take effect until the next map load, because the default value of 0 will have been processed before server.cfg is first loaded.
 
 * `rcon_password "<password>"` Default: ""  
   Sets the password for RCON authentication.
@@ -553,11 +554,11 @@ The purpose of this section is to list a number of known bugs, or quirks in SRCD
 
 * The sv_lan ConVar does not prevent the server being accessed from outside the local area network. Binding SRCDS to a LAN IP address, then forwarding the port being listened on, will cause the server to be accessible from outside the LAN, and visible from the internet tab in the server browser. A more sane way for sv_lan to behave, is to prevent the server from being accessed by a host outside the subnet of the bound IP address.
 
-* The functionality of the sv_pure ConVar is very unclear. Many of the files that it attempts to load are not present with a clean install of Dystopia; the only present one is `<Name of server directory>/dystopia/pure_server_whitelist.txt`. It also appears that this file can be loaded from `<Name of server directory>/dystopia/cfg` as well. Generally speaking, the files loaded by a given sv_pure setting do not match those specified in the description of the ConVar provided by the server. In actuality, I have not done much testing with sv_pure, as I have almost always set it to 2 in a production environment.
+* The functionality of the sv_pure ConVar is very unclear. Many of the files that it attempts to load are not present with a clean install of Dystopia; the only present one is `<Name of server directory>/dystopia/pure_server_whitelist.txt`. It also appears that this file can be loaded from `<Name of server directory>/dystopia/cfg` as well. Generally speaking, the files loaded by a given sv_pure setting do not match those specified in the description of the ConVar provided by the server.
 
   Another oddity is that sv_pure seems to always be set to 0 upon server start. This occurs after ConVars passed from the command line are processed, but before server.cfg (and the map) is loaded. As far as I know, sv_pure must be set before a map loads, in order to take effect. The result is that sv_pure will effectively be 0 for the very first map loaded by the server; it should work correctly for subsequent maps.
 
-  My next remarks regarding sv_pure will mostly be conjecture. It is likely, that if files cannot be opened, sv_pure will default to forcing clientside content to match with that from Steam. (This is also the normal behavior of sv_pure 2 according to the Valve developer wiki) Perhaps the unique behavior was intended to perform some special purpose by the Dystopia developers, and that it is essentially cruft from the previous versions of the game. In a Dystopia 1.3 installation I had backed up, I noted that no extra files were present however.
+Finally, as previously mentioned in the description for this ConVar: a setting of 1 one or 2, appears to have equivalent effect to a setting of 0. These settings seem to have no effect on the ability of a client to use custom content. Further, although the server console will report that it is set to the correct value, the client console will report that it is set to 0. A setting of -1 is correctly reported however.
 
 * The precise purpose of the maplist.txt file is unclear, and not well documented. In my experience, the contents of maplist.txt have no effect on the ability to change to a map, or to see it in the list produced by `maps *`. At this point, I am unsure of what its purpose might be, but maintain it is a best practice. Perhaps the intended purpose for maplist.txt is to specify which maps may be loaded by the server (if maplist.txt does not contain a map, an error will be produced when attempting to load it).
 
@@ -615,6 +616,9 @@ Credits
 * Tom Sawyer - http://steamcommunity.com/profiles/76561197983306799/  
   Wrote an initial guide for installing Dystopia 1.4, back when it was first released, and documented the fix for Dystopia 1.4.1 being broken by an SDK update.
 
+* Salty Peasant - http://steamcommunity.com/profiles/76561198041115308/  
+  Corrected my basic description of the sv_pure ConVar. Also brought it to my attention that sv_pure seemed to have no effect on the ability of a client to load custom content.
+
 * And players like YOU!
 
 
@@ -622,9 +626,16 @@ Changelog
 ----------------------------------
 
 Version numbers should be composed of 3 decimal places, each separated by a '.'. If a decimal place is incremented, all lower decimal places should be reset to 0. The purpose of each (listed from leftmost place to rightmost place) is:
+
 1. Count large scale changes, usually affecting many sections. These should majorly alter the content of the guide.
 2. Count major changes. These might be adding, removing, or otherwise rewriting substantial portions of sections.
 3. Count minor changes. These might be to correct typographical errors, or to make other localized changes.
+
+V1.1.0 11-21-2016
+
+* Fix formatting in changelog section
+* Correct sv_pure description, and better describe its bugs. Thanks to Salty Peasant!
+* Add caveat to sv_lan, about not setting it from the comand line.
 
 V1.0.0 11-19-2016
 
