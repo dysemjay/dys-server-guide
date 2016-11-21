@@ -576,7 +576,7 @@ The purpose of this section is to list a number of known bugs, or quirks in SRCD
 Useful Links
 ----------------------------------
 
-* Pure Servers - https://developer.valvesoftware.com/wiki/Sv_pure
+* Pure Servers - https://developer.valvesoftware.com/wiki/Sv_pure  
   Explains standard functionality of the sv_pure ConVar in detail.
 
 * SRCDS Hardening - https://wiki.alliedmods.net/Srcds_hardening  
