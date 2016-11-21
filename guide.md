@@ -633,12 +633,12 @@ Version numbers should be composed of 3 decimal places, each separated by a '.'.
 
 V1.1.0 11-21-2016
 
-* Fix formatting in changelog section
+* Fix formatting in changelog section.
 * Correct sv_pure description, and better describe its bugs. Thanks to Salty Peasant!
 * Add caveat to sv_lan, about not setting it from the comand line.
 
 V1.0.0 11-19-2016
 
-* Initial Release
+* Initial Release.
 
 
