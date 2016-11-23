@@ -3,8 +3,10 @@ dys-1.4.1-server-guide
 
 This is the GitHub repository for a guide to setting up a Dystopia 1.4.1 dedicated server in the Linux environment. In addition to the guide, various supplementary files are included.
 
+The work is licensed under the Creative Commons Attribution 4.0 License, which can be found here: https://creativecommons.org/licenses/by/4.0/ A plaintext copy of the license is also included in this repository, for further reference.
+
 * guide.md  
-  A copy of the server setup guide written in the markdown format. Should also be quote readable as plaintext.
+  A copy of the server setup guide written in the markdown format. Should also be quite readable as plaintext.
 
 * server.cfg  
   An example server.cfg file for SRCDS.
