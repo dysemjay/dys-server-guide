@@ -286,7 +286,7 @@ This section will describe the method of installing, and managing maps for the s
 
 * The map files should be stored in `<Name of server directory>/dystopia/maps`, and should have the extension ".bsp". Note that serverside map files CANNOT be compressed, unlike the clientside copies.
 
-* If there is not a file named "maplist.txt" in `<Name of server directory>/dystopia>` then it should be created, and the name of each map you wish to be usable should be written to the file, excluding the extension. Each name should be separated by a newline. Note that the precise functionality of maplist.txt seems rather poorly defined; this will be discussed in greater detail in the known bugs section. The following line of shellscript run from `<Name of server directory>/dystopia` can be used to populate maplist.txt: `find maps -iname "*.bsp" -type f -maxdepth 1 -exec basename {} .bsp \; | sort > maplist.txt`
+* If there is not a file named "maplist.txt" in `<Name of server directory>/dystopia>` then it should be created, and the name of each map you wish to be usable should be written to the file, excluding the extension. Each name should be separated by a newline. Note that the precise functionality of maplist.txt seems rather poorly defined; this will be discussed in greater detail in the known bugs section. The following line of shellscript run from `<Name of server directory>/dystopia` can be used to populate maplist.txt: `find maps -maxdepth 1 -type f -iname "*.bsp" -exec basename {} .bsp \; | sort > maplist.txt`.
 
 * Finally, you must specify a mapcycle file. This is done by setting the "mapcyclefile" ConVar; by default it is set to "mapcycle.txt". The mapcycle file controls the order in which maps are loaded by the server. If the mapcycle file does not exist, or is empty, then whatever map is currently loaded, will simply be reloaded. Names of maps are stored in a similar fashion to the maplist file, and are loaded in descending order from top to bottom. If the end of the file is reached, or the current map is not included in the file, then the first map is chosen again.
 
@@ -564,13 +564,13 @@ The purpose of this section is to list a number of known bugs, or quirks in SRCD
 
 * There is an issue with string parsing for client side chat (the say and say_team commands) in Dystopia that will cause a server to crash; it does not manifest itself when using the say command, server side. To explain it, I will first describe a feature of the client side version of the commands: if the first character of the passed argument is ", then the first, and final characters will be truncated. I imagine the rationale for this design choice is so that chat messages can be surrounded by quotes (this will be done to any message submitted through the chat prompt).
 
-  So, if the submitted string is only two characters long, or shorter, this essentially creates an empty string. I believe the empty string condition is what crashes the server. This can work in unexpected ways to cause crashes, even from the chat prompt, which surrounds all messages with quotes. Consider the input ";. The chat prompt would cause this to be submitted as say "";". ; has the syntactical significance of indicating the end of a command, so it would be interpreted as: `say "" <END OF COMMAND> "`. This produces the same empty string condition.
+  So, if the submitted string is only two characters long, or shorter, this essentially creates an empty string. I believe the empty string condition is what crashes the server. This can work in unexpected ways to cause crashes, even from the chat prompt, which surrounds all messages with quotes. Consider the input ";. The chat prompt would cause this to be submitted as `say "";"`. ; has the syntactical significance of indicating the end of a command, so it would be interpreted as: `say "" <END OF COMMAND> "`. This produces the same empty string condition.
 
   Further evidence to support this is that the SourceMod server addon will prevent the crash if `say ""` is entered. I believe the section of code responsible for this is near the comment that starts with "The server normally won't display empty say commands, but in this case it does" here: https://github.com/alliedmodders/sourcemod/blob/master/core/ChatTriggers.cpp The reason SourceMod does not block all incidences of the empty string condition, is that the check only occurs if the first and last characters are quotes, and the processing performed by SourceMod occurs before that performed by the game.
 
   One possible method of fixing this bug is by a SourceMod plugin that I wrote (sorry for the self plug). You can find the source code, and some documentation for it here: https://github.com/dysemjay/SayCommandFix
 
-* You may notice a number of intermittant server crashes for no clear reason. These do not happen exceptionally often, and usually do not cause any long term problem, as the server can simply be started again by the srcds_run script. In my experience, they might occur once or twice a week, and the debugging information describes a segmentation fault ocurring in <Name of server directory>/dystopia/bin/server_srv.so. Please feel free to offer any further insight on this.
+* You may notice a number of intermittant server crashes for no clear reason. These do not happen exceptionally often, and usually do not cause any long term problem, as the server can simply be started again by the srcds_run script. In my experience, they might occur once or twice a week, and the debugging information describes a segmentation fault ocurring in `<Name of server directory>/dystopia/bin/server_srv.so`. Please feel free to offer any further insight on this.
 
 
 Useful Links
@@ -630,6 +630,12 @@ Version numbers should be composed of 3 decimal places, each separated by a '.'.
 1. Count large scale changes, usually affecting many sections. These should majorly alter the content of the guide.
 2. Count major changes. These might be adding, removing, or otherwise rewriting substantial portions of sections.
 3. Count minor changes. These might be to correct typographical errors, or to make other localized changes.
+
+V1.1.1 11-25-2016
+
+* Fix shell script to populate maplist.txt.
+* Add period to end of sentence in Map Management section.
+* Add Markdown code sections in Known Bugs section.
 
 V1.1.0 11-21-2016
 
