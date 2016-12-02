@@ -3,6 +3,12 @@ Changelog
 
 Note that this file is intended as a general purpose changelog for the entire repository. A changelog specifically for guide.md is included in the file, although changes to it should be mentioned here. Due to the general nature of this file, changes are recorded with a revision number, rather than a complex version number.
 
+## 12-02-2016 (R5)
+
+- Add Credits.md for those who contribute to the repository, in general.
+- Remove the TODO from server.cfg. mp_scalespawntime is Dystopia specific. Thanks to atomy!
+- Update to guide.md (V1.1.2): Fix typo, elaborate on mapcycle file behavior.
+
 ## 11-25-2016 (R4)
 
 - Update to guide.md (V1.1.1): Fix maplist generation code, fix puncuation, fix formatting.

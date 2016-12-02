@@ -288,7 +288,7 @@ This section will describe the method of installing, and managing maps for the s
 
 * If there is not a file named "maplist.txt" in `<Name of server directory>/dystopia>` then it should be created, and the name of each map you wish to be usable should be written to the file, excluding the extension. Each name should be separated by a newline. Note that the precise functionality of maplist.txt seems rather poorly defined; this will be discussed in greater detail in the known bugs section. The following line of shellscript run from `<Name of server directory>/dystopia` can be used to populate maplist.txt: `find maps -maxdepth 1 -type f -iname "*.bsp" -exec basename {} .bsp \; | sort > maplist.txt`.
 
-* Finally, you must specify a mapcycle file. This is done by setting the "mapcyclefile" ConVar; by default it is set to "mapcycle.txt". The mapcycle file controls the order in which maps are loaded by the server. If the mapcycle file does not exist, or is empty, then whatever map is currently loaded, will simply be reloaded. Names of maps are stored in a similar fashion to the maplist file, and are loaded in descending order from top to bottom. If the end of the file is reached, or the current map is not included in the file, then the first map is chosen again.
+* Finally, you must specify a mapcycle file. This is done by setting the "mapcyclefile" ConVar; by default it is set to "mapcycle.txt". The mapcycle file controls the order in which maps are loaded by the server. If the mapcycle file does not exist, or is empty, then whatever map is currently loaded, will simply be reloaded. Names of maps are stored in a similar fashion to the maplist file, and are loaded in descending order from top to bottom. If the end of the file is reached, or the current map is not included in the file, then the first map is chosen again. Finally, if a map listed in the file cannot be found, then it will be skipped.
 
 
 Starting the Server
@@ -560,7 +560,7 @@ The purpose of this section is to list a number of known bugs, or quirks in SRCD
 
   Finally, as previously mentioned in the description for this ConVar: a setting of 1 or 2, appears to have equivalent effect to a setting of 0. These settings seem to have no effect on the ability of a client to use custom content. Further, although the server console will report that it is set to the correct value, the client console will report that it is set to 0. A setting of -1 is correctly reported however.
 
-* The precise purpose of the maplist.txt file is unclear, and not well documented. In my experience, the contents of maplist.txt have no effect on the ability to change to a map, or to see it in the list produced by `maps *`. At this point, I am unsure of what its purpose might be, but maintain it is a best practice. Perhaps the intended purpose for maplist.txt is to specify which maps may be loaded by the server (if maplist.txt does not contain a map, an error will be produced when attempting to load it).
+* The precise purpose of the maplist.txt file is unclear, and not well documented. In my experience, the contents of maplist.txt have no effect on the ability to change to a map, or to see it in the list produced by `maps *`. At this point, I am unsure of what its purpose might be, but maintain it as a best practice. Perhaps the intended purpose for maplist.txt is to specify which maps may be loaded by the server (if maplist.txt does not contain a map, an error will be produced when attempting to load it).
 
 * There is an issue with string parsing for client side chat (the say and say_team commands) in Dystopia that will cause a server to crash; it does not manifest itself when using the say command, server side. To explain it, I will first describe a feature of the client side version of the commands: if the first character of the passed argument is ", then the first, and final characters will be truncated. I imagine the rationale for this design choice is so that chat messages can be surrounded by quotes (this will be done to any message submitted through the chat prompt).
 
@@ -630,6 +630,11 @@ Version numbers should be composed of 3 decimal places, each separated by a '.'.
 1. Count large scale changes, usually affecting many sections. These should majorly alter the content of the guide.
 2. Count major changes. These might be adding, removing, or otherwise rewriting substantial portions of sections.
 3. Count minor changes. These might be to correct typographical errors, or to make other localized changes.
+
+V1.1.2 12-02-2016
+
+* Correct typo in Map Management section.
+* Describe behavior for mapcycle.txt, if an entry cannot be found.
 
 V1.1.1 11-25-2016
 
