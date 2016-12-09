@@ -3,6 +3,10 @@ Changelog
 
 Note that this file is intended as a general purpose changelog for the entire repository. A changelog specifically for guide.md is included in the file, although changes to it should be mentioned here. Due to the general nature of this file, changes are recorded with a revision number, rather than a complex version number.
 
+## 12-9-2016 (R6)
+
+- Update to guide.md (V2.0.0): Remove Description section, links in Introduction section, mp_autoteambalance ConVar, mp_scalespawntime ConVar, callvote balanceteams algorithm, verified maplist.txt behavior, balanceteams command algorithm, clarify Dystopia stats port range. Thanks to Tom Sawyer for all of the insight!
+
 ## 12-02-2016 (R5)
 
 - Add Credits.md for those who contribute to the repository, in general.
