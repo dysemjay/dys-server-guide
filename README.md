@@ -21,5 +21,5 @@ The work is licensed under the Creative Commons Attribution 4.0 License, which c
 
   I am aware that the Valve Corporation holds the copyright to the original script; if a legal representative from it requests that I remove this file, I will do so.
 
-* debug.cmds
+* debug.cmds  
   Debug commands file to be used with srcds_run_m. It contains the debug commands that would normally be used by the original srcds_run script.
