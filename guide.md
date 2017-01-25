@@ -110,7 +110,7 @@ The following is a list of common console variables, and a description (Note the
   Executes a configuration file (in a similar way to server.cfg). This can be useful for separating configuration in to multiple files.
 
 * `hostname "<Name of server>"` Default: ""  
-  Sets the name of the server
+  Sets the name of the server. If set to "", then it will be listed as "Dystopia" in the server browser. The maximum length is uncertain, however, for practical purposes, it should probably be no greater than 63 characters, as successive characters will be truncated when it is listed in the server browser.
 
 * `sv_pure <-1, 0, 1, or 2>` Default: 0  
   Determines to what extent a client will be permitted to use files that differ from those included with the vanilla game. The behavior of the ConVar seems bugged in many ways. It appears that values 1, and 2 cause equivalent behavior to 0: from a client perspective, it is possible to use non-whitelisted custom content, and sv_pure will actually be reported as 0. More information regarding its behavior can be found in the known bugs section.  
@@ -632,6 +632,11 @@ Version numbers should be composed of 3 decimal places, each separated by a '.'.
 1. Count large scale changes, usually affecting many sections. These should majorly alter the content of the guide.
 2. Count major changes. These might be adding, removing, or otherwise rewriting substantial portions of sections.
 3. Count minor changes. These might be to correct typographical errors, or to make other localized changes.
+
+V2.0.1 1-25-2017
+
+* Describe default hostname displayed in the server browser.
+* Describe character limit for hostname in the server browser.
 
 V2.0.0 12-9-2016
 

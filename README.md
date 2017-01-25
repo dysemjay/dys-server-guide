@@ -1,4 +1,4 @@
-dys-1.4.1-server-guide
+dys-server-guide
 ==================================
 
 This is the GitHub repository for a guide to setting up a Dystopia 1.4.1 dedicated server in the Linux environment. In addition to the guide, various supplementary files are included.
