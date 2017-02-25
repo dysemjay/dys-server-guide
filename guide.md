@@ -637,6 +637,7 @@ V2.0.2 2-24-2017
 
 * Correct typo in Getting SteamCMD section.
 * Correct typo in description of sv_lan ConVar.
+* Correct typo in mp_autoteambalance ConVar.
 * Correct typo in Starting the Server section.
 * Change 'minimalistic' to 'minimalist' in Working From the Server Console/Common Commands section.
 * Correct typo in description for kickid command.
