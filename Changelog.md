@@ -3,6 +3,10 @@ Changelog
 
 Note that this file is intended as a general purpose changelog for the entire repository. A changelog specifically for guide.md is included in the file, although changes to it should be mentioned here. Due to the general nature of this file, changes are recorded with a revision number, rather than a complex version number.
 
+## 2-24-2017 (R8)
+
+- Update to guide.md (V2.0.2): Fix many typos, correct word choice, fix formatting.
+
 ## 1-25-2017 (R7)
 
 - Set header of README.md to name of repository.

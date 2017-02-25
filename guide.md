@@ -53,7 +53,7 @@ Getting SteamCMD
    If necessary, change to an account with the appropriate privileges: `su <name of account>`
 
    * Debian: `sudo apt-get install steamcmd`
-   * Redhat/CentOS: `yum install steamcmd`
+   * RedHat/CentOS: `yum install steamcmd`
    * Arch: `pacman install steamcmd`
 
         ln -s /usr/games/steamcmd steamcmd
@@ -121,7 +121,7 @@ The following is a list of common console variables, and a description (Note the
    2: Strictest restriction on clientside files. Apply rules in `<Name of server directory>/dystopia/cfg/pure_server_full.txt` and in `<Name of server directory>/dystopia/cfg/trusted_keys_base.txt`. This does not appear to work.
 
 * `sv_lan <0 or 1>` Default: 0  
-  If set to 1, the server will be run in LAN mode, which should prevent users from joining, or seeing the server if they are not in your local area network. However, that feature appears to be bugged; please check the known bugs section for more information. This will also prevent banning of players by SteamID, and disable VAC security. Note that if you intend to set this to 1, then it should also be set from the command prompt. Othwerwise, it will not take effect until the next map load, because the default value of 0 will have been processed before server.cfg is first loaded.
+  If set to 1, the server will be run in LAN mode, which should prevent users from joining, or seeing the server if they are not in your local area network. However, that feature appears to be bugged; please check the known bugs section for more information. This will also prevent banning of players by SteamID, and disable VAC security. Note that if you intend to set this to 1, then it should also be set from the command prompt. Otherwise, it will not take effect until the next map load, because the default value of 0 will have been processed before server.cfg is first loaded.
 
 * `rcon_password "<password>"` Default: ""  
   Sets the password for RCON authentication.
@@ -193,7 +193,7 @@ The following is a list of common console variables, and a description (Note the
   Maximum number of players on the server. This number is usually 16 for Dystopia.
 
 * `mp_autoteambalance <0 or 1>` Default: 1  
-  If set to 1, then the server can automatically balance the teams. This will occur if one team has two or more players than the other. The player that most recently joined the offending team will be moved to the other upon death. It also appears that players that were moved forcibly within the last 300 seconds will automatically take lower priority than those that were not. This detail was gleaned from the following Source SDK2013 functions: https://github.com/ValveSoftware/source-sdk-2013/blob/0d8dceea4310fde5706b3ce1c70609d72a38efdf/mp/src/game/shared/teamplayroundbased_gamerules.cpp#L2992, and https://github.com/ValveSoftware/source-sdk-2013/blob/0d8dceea4310fde5706b3ce1c70609d72a38efdf/mp/src/game/server/basemultiplayerplayer.cpp#L205
+  If set to 1, then the server can automatically balance the teams. This will occur if one team has two or more players than the other. The player that most recently joined the offending team will be moved to the other upon death. It also appears that players that were moved forcibly within the last 300 seconds will automatically take lower priority than those that were not. This detail was gleaned from the following Source SDK 2013 functions: https://github.com/ValveSoftware/source-sdk-2013/blob/0d8dceea4310fde5706b3ce1c70609d72a38efdf/mp/src/game/shared/teamplayroundbased_gamerules.cpp#L2992, and https://github.com/ValveSoftware/source-sdk-2013/blob/0d8dceea4310fde5706b3ce1c70609d72a38efdf/mp/src/game/server/basemultiplayerplayer.cpp#L205
 
 * `mp_rounds <number>` Default: 2  
   Number of rounds before a map change. This number is usually 2 for Dystopia. Setting it to 0 should be equivalent to setting it to 1. (Only 1 round before the map changes)
@@ -291,7 +291,7 @@ This section will describe the method of installing, and managing maps for the s
 Starting the Server
 ----------------------------------
 
-This section will describe a procedure for starting the server, and some command line parameters that may be passed during this process. SRCDS should be started with a shell script called "srcds_run", located in `<Name of server directory>`. In my opinion, the original script has some features that do not serve much of a purpose, or do not work properly. A revised version that I wrote can be found here: https://github.com/dysemjay/dys-server-guide/blob/master/srcds_run_m The primary differences are: reliance on the -debugcmds parameter to pass arguments to gdb, a revised help message, and a little refactoring. More information can be found in the readme of the repository.
+This section will describe a procedure for starting the server, and some command line parameters that may be passed during this process. SRCDS should be started with a shell script called "srcds_run", located in `<Name of server directory>`. In my opinion, the original script has some features that do not serve much of a purpose, or do not work properly. A revised version that I wrote can be found here: https://github.com/dysemjay/dys-server-guide/blob/master/srcds_run_m The primary differences are: reliance on the -debugcmds parameter to pass arguments to GDB, a revised help message, and a little refactoring. More information can be found in the readme of the repository.
 
 When SRCDS is started, the server command line interface will opened. This can pose a problem when attempting to switch between the server console, and the shell prompt. A common method of circumventing this is to start SRCDS with the screen command. The session can be detached from (to return to the shell prompt) by pressing Ctrl-a, then Ctrl-d. The session can be reattached with the command `screen -r`
 
@@ -328,7 +328,7 @@ Finally, an example command to start SRCDS is:
 Working From the Server Console/Common Commands
 ----------------------------------
 
-The purpose of this section is to explain the layout and behavior of the SRCDS command line interface, and some commonly issued commands. The interface is quite simple and minimalistic; output is echoed to the terminal, as is buffered input. Input is submitted by a linebreak (or pressing enter). Due to this behavior, the display of buffered input can be interrupted by other information, which can make the process of typing out a command tedious, and error prone. As far as I know, there is no elegant way of suppressing, or filtering output. Please inform me if you happen to know a way of doing this.
+The purpose of this section is to explain the layout and behavior of the SRCDS command line interface, and some commonly issued commands. The interface is quite simple and minimalist; output is echoed to the terminal, as is buffered input. Input is submitted by a linebreak (or pressing enter). Due to this behavior, the display of buffered input can be interrupted by other information, which can make the process of typing out a command tedious, and error prone. As far as I know, there is no elegant way of suppressing, or filtering output. Please inform me if you happen to know a way of doing this.
 
 ConVars can be set from the command line interface in a similar manner to in server.cfg. These will take precedence over those passed as arguments when starting the server, but not those explicitly set in server.cfg. So if the ConVar is set in server.cfg, your changes will be lost when it is reloaded (Such as in the case of a map change). If the ConVar is typed without a specified value, then the current value, along with a description of the ConVar will be printed.
 
@@ -365,7 +365,7 @@ The following is a list of common commands, and their descriptions (Again, certa
   Kicks a player from the server by name. Note that the name matching is case insensitive.
 
 * `kickid <userid>`  
-  Kick a player from the server by userid.
+  Kick a player from the server by UserID.
 
 * `say <string>`  
   Causes a message to be printed to global chat in game. In this case, the source will be listed as "Console". Note that, unlike the client side say command, the server side say command, will include quotation marks in the printed message. 
@@ -374,9 +374,9 @@ The following is a list of common commands, and their descriptions (Again, certa
 Banning Players
 ----------------------------------
 
-The purpose of this section is to describe procedures for managing player bans from the command line, and in files. There are two principle ways a player can be banned from the server: by IP address, and by Steam ID. The respective .cfg files associated with these methods are: banned_ip.cfg, and banned_user.cfg. (Both are located in <Name of server directory>/dystopia/cfg and can be made if they do not already exist.)
+The purpose of this section is to describe procedures for managing player bans from the command line, and in files. There are two principle ways a player can be banned from the server: by IP address, and by Steam ID. The respective .cfg files associated with these methods are: banned_ip.cfg, and banned_user.cfg. (Both are located in `<Name of server directory>/dystopia/cfg` and can be made if they do not already exist.)
 
-Note that for banning IP addresses, you might also consider completely blocking them at the firewall level. On short notice, this can be performed by the command: `iptables -I INPUT -s <IP Address> -j DROP`. Replacing '-I' with '-D' will remove the IP Address ban. The argument of the command, with '-I' replaced by '-A', can also be placed at the beginning of the INPUT chain in the rules file. One caveat about IP address banning is that many IP addresses are dynamically allocted, and are quite subject to change as a result.
+Note that for banning IP addresses, you might also consider completely blocking them at the firewall level. On short notice, this can be performed by the command: `iptables -I INPUT -s <IP Address> -j DROP`. Replacing '-I' with '-D' will remove the IP Address ban. The argument of the command, with '-I' replaced by '-A', can also be placed at the beginning of the INPUT chain in the rules file. One caveat about IP address banning is that many IP addresses are dynamically allocated, and are quite subject to change as a result.
 
 * banned_ip.cfg should essentially be populated by a series of addip commands.
 * banned_user.cfg should essentially be populated by a series of banid commands.
@@ -444,7 +444,7 @@ The purpose of this section is to list ConVars associated with rate settings, an
 * `sv_maxrate <number>` Default: 0  
   Maximum upload bandwidth usage for each connection in bytes. 0 is unlimited
 
-So note that these ConVars are closely related to the clientside Convars: cl_cmdrate, cl_updaterate, and rate. They allow the server to negotiate the parameters of a player's connection. The updaterate, and cmdrate should not exceed the server's tickrate, so the default maximum should be sufficient in most situations. An important consideration when setting the minimum is that many players will just use the default rate settings. When setting sv_client_cmdrate_difference, bear in mind that a common player's upload bandwidth might be lower than their download bandwidth, so allowing for there to be some difference between their command rate and update rate can be beneficial.
+So note that these ConVars are closely related to the clientside ConVars: cl_cmdrate, cl_updaterate, and rate. They allow the server to negotiate the parameters of a player's connection. The updaterate, and cmdrate should not exceed the server's tickrate, so the default maximum should be sufficient in most situations. An important consideration when setting the minimum is that many players will just use the default rate settings. When setting sv_client_cmdrate_difference, bear in mind that a common player's upload bandwidth might be lower than their download bandwidth, so allowing for there to be some difference between their command rate and update rate can be beneficial.
 
 Finally, we will discuss a method of calculating an appropriate value for sv_maxrate, based on the number of slots, and upload bandwidth. Suppose the server has 16 slots, and an upload bandwidth of 5 Mbit/s (This should be common for a consumer cable connection, remember that the bandwidth might also be consumed by other traffic).
 
@@ -455,7 +455,7 @@ Finally, we will discuss a method of calculating an appropriate value for sv_max
 2. Divide this by the number of slots.  
    625000 / 16 = ~39062 bytes
 
-So we have calculated the maximum bandwidth per connection to be 39062 bytes. This a value we can set sv_maxrate to. It might be preferable to estimate below the precise number, given that the ISP may not gaurantee consistent bandwidth.
+So we have calculated the maximum bandwidth per connection to be 39062 bytes. This a value we can set sv_maxrate to. It might be preferable to estimate below the precise number, given that the ISP may not guarantee consistent bandwidth.
 
 
 Firewall Hardening Tips
@@ -523,13 +523,13 @@ With these considerations, this is an example iptables chain to be included in a
 Miscellaneous Optimizations
 ----------------------------------
 
-The purpose of this section is to describe a number of optimizations to improve the performance of SRCDS in various areas. Please use these optimizations with care, and consider your own situation when implementing them. It is possible for some optimzations to be detrimental, or otherwise have little effect on performance in specific circumstances. Note that I might not go in to great details regarding the implementation of these optmizations, as an entire guide could be written on them alone.
+The purpose of this section is to describe a number of optimizations to improve the performance of SRCDS in various areas. Please use these optimizations with care, and consider your own situation when implementing them. It is possible for some optimizations to be detrimental, or otherwise have little effect on performance in specific circumstances. Note that I might not go in to great details regarding the implementation of these optimizations, as an entire guide could be written on them alone.
 
 * Dystopia dedicated server will start with a tickrate of 66, by default. While it is technically possible to change this, doing so is inadvisable. The in game physics were not made to properly support other tickrates, and in my experience, setting a higher tickrate essentially results in the gameplay being sped up from the player perspective.
 
 * The ConVar "host_timer_spin_ms" can possibly improve the performance of SRCDS if the timing mechanism implemented in the operating system is imprecise. It is set to time in milliseconds, with a default value of zero. Internally, there is a delay between each server tick, or update (this delay is affected by the tickrate). 
 
-  During the delay, normally a system call is made for the process to "sleep"; this allows for it to relinquish CPU time that can be used by another process, however, the operating system must eventually "wake" the process so that it will run again. If the operating system does not wake the process on time, server performance can be negatively impacted. host_timer_spin_ms addresses this issue by causing the process to wake a specified number of milliseconds before it normally would, thus comphensating for the lack of precision. The downside of it, is that the CPU usage of the server will increase. In my experience, the Linux kernel timing mechanism is pretty precise, and this is not necessary, especially with improvements in hardware clock sources.
+  During the delay, normally a system call is made for the process to "sleep"; this allows for it to relinquish CPU time that can be used by another process, however, the operating system must eventually "wake" the process so that it will run again. If the operating system does not wake the process on time, server performance can be negatively impacted. host_timer_spin_ms addresses this issue by causing the process to wake a specified number of milliseconds before it normally would, thus compensating for the lack of precision. The downside of it, is that the CPU usage of the server will increase. In my experience, the Linux kernel timing mechanism is pretty precise, and this is not necessary, especially with improvements in hardware clock sources.
 
 * Server performance may benefit by the process being run at a lower nice value, which will increase the priority of it. Running the server with realtime priority is inadvisable, as this would cause it to compete with system processes for resources.
 
@@ -569,7 +569,7 @@ The purpose of this section is to list a number of known bugs, or quirks in SRCD
 
   One possible method of fixing this bug is by a SourceMod plugin that I wrote (sorry for the self plug). You can find the source code, and some documentation for it here: https://github.com/dysemjay/SayCommandFix
 
-* You may notice a number of intermittant server crashes for no clear reason. These do not happen exceptionally often, and usually do not cause any long term problem, as the server can simply be started again by the srcds_run script. In my experience, they might occur once or twice a week, and the debugging information describes a segmentation fault ocurring in `<Name of server directory>/dystopia/bin/server_srv.so`. Please feel free to offer any further insight on this.
+* You may notice a number of intermittent server crashes for no clear reason. These do not happen exceptionally often, and usually do not cause any long term problem, as the server can simply be started again by the srcds_run script. In my experience, they might occur once or twice a week, and the debugging information describes a segmentation fault occurring in `<Name of server directory>/dystopia/bin/server_srv.so`. Please feel free to offer any further insight on this.
 
 
 Useful Links
@@ -613,7 +613,7 @@ Credits
   General source of documentation regarding the Linux operating system, and common programs for it.
 
 * Tom Sawyer - http://steamcommunity.com/profiles/76561197983306799/  
-  Wrote an initial guide for installing Dystopia 1.4, back when it was first released, and documented the fix for Dystopia 1.4.1 being broken by an SDK update. Confirmed that maplist.txt has no effect. Explained behavior of mp_autoteambalance, and mp_scalespawntime ConVars. Described algorithm used by callvote balanceteams, and the serverside balanceteams command. Directed my attention to Source SDK2013 code associated with team balance.
+  Wrote an initial guide for installing Dystopia 1.4, back when it was first released, and documented the fix for Dystopia 1.4.1 being broken by an SDK update. Confirmed that maplist.txt has no effect. Explained behavior of mp_autoteambalance, and mp_scalespawntime ConVars. Described algorithm used by callvote balanceteams, and the serverside balanceteams command. Directed my attention to Source SDK 2013 code associated with team balance.
 
 * Salty Peasant - http://steamcommunity.com/profiles/76561198041115308/  
   Corrected my basic description of the sv_pure ConVar. Also brought it to my attention that sv_pure seemed to have no effect on the ability of a client to load custom content.
@@ -632,6 +632,20 @@ Version numbers should be composed of 3 decimal places, each separated by a '.'.
 1. Count large scale changes, usually affecting many sections. These should majorly alter the content of the guide.
 2. Count major changes. These might be adding, removing, or otherwise rewriting substantial portions of sections.
 3. Count minor changes. These might be to correct typographical errors, or to make other localized changes.
+
+V2.0.2 2-24-2017
+
+* Correct typo in Getting SteamCMD section.
+* Correct typo in description of sv_lan ConVar.
+* Correct typo in Starting the Server section.
+* Change 'minimalistic' to 'minimalist' in Working From the Server Console/Common Commands section.
+* Correct typo in description for kickid command.
+* Add Markdown code section in Banning Players section.
+* Correct typo in Banning Players section.
+* Correct two typos in Rate Settings section.
+* Correct three typos in Miscellaneous Optimizations section.
+* Correct two typos in Known Bugs section.
+* Correct typo in Credits section.
 
 V2.0.1 1-25-2017
 
