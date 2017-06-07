@@ -3,16 +3,21 @@ Changelog
 
 Note that this file is intended as a general purpose changelog for the entire repository. A changelog specifically for guide.md is included in the file, although changes to it should be mentioned here. Due to the general nature of this file, changes are recorded with a revision number, rather than a complex version number.
 
-## 2-24-2017 (R8)
+## 06-07-2017 (R9)
+
+- Update to guide.md (V2.1.0): Table of contents, bullet points in Server Installation section, superfluous space in Miscellaneous Optimizations section, date format in Changelog section, fix typo in Changelog section.
+- Precede all single digits in dates with 0 in Changelog.md
+
+## 02-24-2017 (R8)
 
 - Update to guide.md (V2.0.2): Fix many typos, correct word choice, fix formatting.
 
-## 1-25-2017 (R7)
+## 01-25-2017 (R7)
 
 - Set header of README.md to name of repository.
 - Update to guide.md (V2.0.1): Describe hostname character limit, describe default hostname.
 
-## 12-9-2016 (R6)
+## 12-09-2016 (R6)
 
 - Update to guide.md (V2.0.0): Remove Description section, links in Introduction section, mp_autoteambalance ConVar, mp_scalespawntime ConVar, callvote balanceteams algorithm, verified maplist.txt behavior, balanceteams command algorithm, clarify Dystopia stats port range. Thanks to Tom Sawyer for all of the insight!
 

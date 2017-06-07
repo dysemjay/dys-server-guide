@@ -1,6 +1,22 @@
 Dystopia 1.4.1 Server Setup Guide
 ==================================
 
+1.  [Introduction](#introduction)
+2.  [Preparation](#preparation)
+3.  [Getting SteamCMD](#getting-steamcmd)
+4.  [Server Installation](#server-installation)
+5.  [server.cfg (The primary configuration file)](#server.cfg-the-primary-configuration-file)
+6.  [Map Management](#map-management)
+7.  [Starting the Server](#starting-the-server)
+8.  [Working From the Server Console/Common Commands](#working-from-the-server-consolecommon-commands)
+9.  [Banning Players](#banning-players)
+10. [Rate Settings](#rate-settings)
+11. [Firewall Hardening Tips](#firewall-hardening-tips)
+12. [Miscellaneous Optimizations](#miscellaneous-optimizations)
+13. [Known Bugs](#known-bugs)
+14. [Useful Links](#useful-links)
+15. [Credits](#credits)
+16. [Changelog](#changelog)
 
 Introduction
 ----------------------------------
@@ -81,8 +97,8 @@ Server Installation
 
 1. Now we start the newly installed SteamCMD. It should automatically update itself if necessary. We should come to a prompt resembling `Steam>`
 
-   If installed from repository: `./steamcmd`  
-   If installed manually: `./steamcmd.sh`
+  * If installed from repository: `./steamcmd`  
+  * If installed manually: `./steamcmd.sh`
 
 2. Install Source SDK 2013 Server to the server directory we previously created. The validate option is used to verify the integrity of the downloaded files; note that this includes configuration files. THIS OPTION WILL OVERWRITE YOUR CUSTOMIZED CONFIGURATION FILES. So you should back them up before using it.
 
@@ -537,7 +553,7 @@ The purpose of this section is to describe a number of optimizations to improve 
 
   This optimization is inadvisable if you notice RAM being consumed to the point that swap space is used, as a result. The point of moving content to a RAM disk is to avoid drive IO. Another thing to note is that, as RAM is volatile memory, the content will need to be copied back to it's respective location on each boot. Backups are a good idea regardless of this optimization.
 
-  The ramdisk can be created by adding an entry to /etc/fstab (You will need to restart, or manually mount the RAM disk with: `mount -t tmpfs -o defaults,nodev,nosuid,noexec,size=<Desired size of ramdisk> tmpfs <Absolute path to directory> ` for this to take effect):
+  The ramdisk can be created by adding an entry to /etc/fstab (You will need to restart, or manually mount the RAM disk with: `mount -t tmpfs -o defaults,nodev,nosuid,noexec,size=<Desired size of ramdisk> tmpfs <Absolute path to directory>` for this to take effect):
 
   `tmpfs <Absolute path to directory> tmpfs defaults,nodev,nosuid,noexec,size=<Desired size of ramdisk> 0 0`
   
@@ -633,7 +649,15 @@ Version numbers should be composed of 3 decimal places, each separated by a '.'.
 2. Count major changes. These might be adding, removing, or otherwise rewriting substantial portions of sections.
 3. Count minor changes. These might be to correct typographical errors, or to make other localized changes.
 
-V2.0.2 2-24-2017
+V2.1.0 06-07-2017
+
+* Add table of contents with links to each section.
+* Add bullet points in Server Installation section.
+* Remove superfluous space in Miscellaneous Optimizations section.
+* Precede single digits in dates with 0 in Changelog section.
+* Fix typo in Changelog section.
+
+V2.0.2 02-24-2017
 
 * Correct typo in Getting SteamCMD section.
 * Correct typo in description of sv_lan ConVar.
@@ -648,12 +672,12 @@ V2.0.2 2-24-2017
 * Correct two typos in Known Bugs section.
 * Correct typo in Credits section.
 
-V2.0.1 1-25-2017
+V2.0.1 01-25-2017
 
 * Describe default hostname displayed in the server browser.
 * Describe character limit for hostname in the server browser.
 
-V2.0.0 12-9-2016
+V2.0.0 12-09-2016
 
 * Remove redundant Description section.
 * Include repository, and Steam discussion page links in Introduction section.
@@ -677,7 +701,7 @@ V1.1.1 11-25-2016
 
 V1.1.0 11-21-2016
 
-* Fix formatting in changelog section.
+* Fix formatting in Changelog section.
 * Correct sv_pure description, and better describe its bugs. Thanks to Salty Peasant!
 * Add caveat to sv_lan, about not setting it from the comand line.
 
