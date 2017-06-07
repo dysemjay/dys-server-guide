@@ -5,7 +5,7 @@ Dystopia 1.4.1 Server Setup Guide
 2.  [Preparation](#preparation)
 3.  [Getting SteamCMD](#getting-steamcmd)
 4.  [Server Installation](#server-installation)
-5.  [server.cfg (The primary configuration file)](#server.cfg-the-primary-configuration-file)
+5.  [server.cfg (The primary configuration file)](#servercfg-the-primary-configuration-file)
 6.  [Map Management](#map-management)
 7.  [Starting the Server](#starting-the-server)
 8.  [Working From the Server Console/Common Commands](#working-from-the-server-consolecommon-commands)
