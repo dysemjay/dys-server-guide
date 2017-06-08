@@ -3,10 +3,16 @@ Changelog
 
 Note that this file is intended as a general purpose changelog for the entire repository. A changelog specifically for guide.md is included in the file, although changes to it should be mentioned here. Due to the general nature of this file, changes are recorded with a revision number, rather than a complex version number.
 
+## TBD-TBD-2017 (R10)
+
+- TODO: Update to guide.md (V2.1.1): Specify direct download rate.
+- Add explanation of repository branches in README.md.
+- Add period to sentence in Changelog.md.
+
 ## 06-07-2017 (R9)
 
 - Update to guide.md (V2.1.0): Table of contents, bullet points in Server Installation section, superfluous space in Miscellaneous Optimizations section, date format in Changelog section, fix typo in Changelog section.
-- Precede all single digits in dates with 0 in Changelog.md
+- Precede all single digits in dates with 0 in Changelog.md.
 
 ## 02-24-2017 (R8)
 

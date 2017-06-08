@@ -3,6 +3,8 @@ dys-server-guide
 
 This is the GitHub repository for a guide to setting up a Dystopia 1.4.1 dedicated server in the Linux environment. In addition to the guide, various supplementary files are included.
 
+As of Revision 10, possible changes are first committed to the "draft" branch, which is then merged in to the "master" branch once they are finalized. An exception to this rule may be for minor fixes which are often typographical in nature, and made shortly after a merge. These might be directly committed to master, if not included in an imminent revision.
+
 The work is licensed under the Creative Commons Attribution 4.0 License, which can be found here: https://creativecommons.org/licenses/by/4.0/ A plaintext copy of the license is also included in this repository, for further reference.
 
 * guide.md  
