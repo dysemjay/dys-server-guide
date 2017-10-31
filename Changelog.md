@@ -5,7 +5,7 @@ Note that this file is intended as a general purpose changelog for the entire re
 
 ## 10-31-2017 (R10)
 
-- Update to guide.md (V2.1.1): Remove unnecessary end of line spaces, Clarify 'ConVar' contraction meaning, specify direct download rate, fix typo in Changelog section.
+- Update to guide.md (V2.1.1): Remove unnecessary end of line spaces, clarify 'ConVar' contraction meaning, specify direct download rate, fix formatting in server.cfg (The primary configuration file) section, correct typo in Changelog section.
 - Add explanation of repository branches in README.md.
 - Add period to sentence in Changelog.md.
 
