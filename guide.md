@@ -25,7 +25,7 @@ This guide is meant to provide instructions for installing and operating a dedic
 
 A specific notation will be used for specifying variable options for commands in this guide.  
 '<' and '>' will surround the description that is necessary for a command. Example: `cd <Name of directory>`  
-'[' and ']' will surround a specific option that will alter the functionality of a command. Example: `app_update <number of Steam App> [validate]`  
+'[' and ']' will surround a specific option that will alter the functionality of a command. Example: `app_update <number of Steam App> [validate]`
 
 Next is a list of platforms the guide has currently been tested on:
 
@@ -120,7 +120,7 @@ server.cfg (The primary configuration file)
 
 server.cfg is the primary configuration file for SRCDS, and will control most of it's function. This section will describe common variables, and detail a way of managing configurations. Comments in any config file are preceded by "//" (Similar to C++ style comments).
 
-The following is a list of common console variables, and a description (Note there are certain ConVars that will be covered in specialized sections):
+The following is a list of common ConVars (console variables), and a description (Note there are certain ConVars that will be covered in specialized sections):
 
 * `exec <Name of file in <Name of server directory>/dystopia/cfg>`  
   Executes a configuration file (in a similar way to server.cfg). This can be useful for separating configuration in to multiple files.
@@ -129,7 +129,7 @@ The following is a list of common console variables, and a description (Note the
   Sets the name of the server. If set to "", then it will be listed as "Dystopia" in the server browser. The maximum length is uncertain, however, for practical purposes, it should probably be no greater than 63 characters, as successive characters will be truncated when it is listed in the server browser.
 
 * `sv_pure <-1, 0, 1, or 2>` Default: 0  
-  Determines to what extent a client will be permitted to use files that differ from those included with the vanilla game. The behavior of the ConVar seems bugged in many ways. It appears that values 1, and 2 cause equivalent behavior to 0: from a client perspective, it is possible to use non-whitelisted custom content, and sv_pure will actually be reported as 0. More information regarding its behavior can be found in the known bugs section.  
+  Determines to what extent a client will be permitted to use files that differ from those included with the vanilla game. The behavior of the ConVar seems bugged in many ways. It appears that values 1, and 2 cause equivalent behavior to 0: from a client perspective, it is possible to use non-whitelisted custom content, and sv_pure will actually be reported as 0. More information regarding its behavior can be found in the known bugs section.
 
   -1: No restrictions on clientside files. Apply no rules.  
    0: Minimal restriction on clientside files. Apply rules in `<Name of server directory>/dystopia/cfg/trusted_keys_base.txt`.  
@@ -161,7 +161,7 @@ The following is a list of common console variables, and a description (Note the
   Sets the password to join the server.
 
 * `sv_allowdownload <0 or 1>` Default: 1  
-  Allows downloading of content (such as maps) directly from the server if set to 1. Downloading directly from the server is VERY SLOW, and the source specified by sv_downloadurl will take precedence.
+  Allows downloading of content (such as maps) directly from the server if set to 1. The download rate directly from the server seems to be capped at 25 kB/s or sv_maxrate; whichever us lower, If sv_downloadurl is set, then it will take precedence.
 
 * `sv_allowupload <0 or 1>` Default: 1  
   Allows uploading of content from the client, to the server if set to 1. Primarily used for sprays.
@@ -362,7 +362,7 @@ The following is a list of common commands, and their descriptions (Again, certa
 * `stats`  
   List general performance information about the server, including CPU usage, bandwidth usage, uptime, number of map changes, FPS, current number of players, and total number of connections.
 
-* `maps <substring>`
+* `maps <substring>`  
   Displays available maps which contain `<substring>` in their name. Entering `maps *` will cause all maps to be displayed.
 
 * `map <name of map>`  
@@ -543,20 +543,20 @@ The purpose of this section is to describe a number of optimizations to improve 
 
 * Dystopia dedicated server will start with a tickrate of 66, by default. While it is technically possible to change this, doing so is inadvisable. The in game physics were not made to properly support other tickrates, and in my experience, setting a higher tickrate essentially results in the gameplay being sped up from the player perspective.
 
-* The ConVar "host_timer_spin_ms" can possibly improve the performance of SRCDS if the timing mechanism implemented in the operating system is imprecise. It is set to time in milliseconds, with a default value of zero. Internally, there is a delay between each server tick, or update (this delay is affected by the tickrate). 
+* The ConVar "host_timer_spin_ms" can possibly improve the performance of SRCDS if the timing mechanism implemented in the operating system is imprecise. It is set to time in milliseconds, with a default value of zero. Internally, there is a delay between each server tick, or update (this delay is affected by the tickrate).
 
   During the delay, normally a system call is made for the process to "sleep"; this allows for it to relinquish CPU time that can be used by another process, however, the operating system must eventually "wake" the process so that it will run again. If the operating system does not wake the process on time, server performance can be negatively impacted. host_timer_spin_ms addresses this issue by causing the process to wake a specified number of milliseconds before it normally would, thus compensating for the lack of precision. The downside of it, is that the CPU usage of the server will increase. In my experience, the Linux kernel timing mechanism is pretty precise, and this is not necessary, especially with improvements in hardware clock sources.
 
 * Server performance may benefit by the process being run at a lower nice value, which will increase the priority of it. Running the server with realtime priority is inadvisable, as this would cause it to compete with system processes for resources.
 
-* If your system has a lot of RAM, you might consider moving server content to a RAM disk. The primary focus should probably be on files that consume a large quantity of space, but do not change often (maps, materials, models, sounds, etc), or temporary files that might be frequently changed or accessed (downloads). 
+* If your system has a lot of RAM, you might consider moving server content to a RAM disk. The primary focus should probably be on files that consume a large quantity of space, but do not change often (maps, materials, models, sounds, etc), or temporary files that might be frequently changed or accessed (downloads).
 
   This optimization is inadvisable if you notice RAM being consumed to the point that swap space is used, as a result. The point of moving content to a RAM disk is to avoid drive IO. Another thing to note is that, as RAM is volatile memory, the content will need to be copied back to it's respective location on each boot. Backups are a good idea regardless of this optimization.
 
   The ramdisk can be created by adding an entry to /etc/fstab (You will need to restart, or manually mount the RAM disk with: `mount -t tmpfs -o defaults,nodev,nosuid,noexec,size=<Desired size of ramdisk> tmpfs <Absolute path to directory>` for this to take effect):
 
   `tmpfs <Absolute path to directory> tmpfs defaults,nodev,nosuid,noexec,size=<Desired size of ramdisk> 0 0`
-  
+
   The permissions specified here should be sufficient for the maps directory. It should not be necessary to create device files, or  run any executables from it. The size of the RAM disk is in kilobytes by default, however, appending 'g' or 'm' to the value, will set the unit to gigabytes, and megabytes, respectively. '%' can also be used to set the size to a percentage of the system RAM. Note the size of the ramdisk cannot be greater than 50 percent of the installed RAM.
 
 
@@ -649,6 +649,12 @@ Version numbers should be composed of 3 decimal places, each separated by a '.'.
 2. Count major changes. These might be adding, removing, or otherwise rewriting substantial portions of sections.
 3. Count minor changes. These might be to correct typographical errors, or to make other localized changes.
 
+V2.1.1 10-31-2017
+
+* Clarify that 'ConVar' is a contraction of 'Console Variable' in the server.cfg (The primary configuration file) section.
+* Specify direct download rate in description of sv_allowdownload ConVar.
+* Fix typo in Changelog section.
+
 V2.1.0 06-07-2017
 
 * Add table of contents with links to each section.
@@ -703,7 +709,7 @@ V1.1.0 11-21-2016
 
 * Fix formatting in Changelog section.
 * Correct sv_pure description, and better describe its bugs. Thanks to Salty Peasant!
-* Add caveat to sv_lan, about not setting it from the comand line.
+* Add caveat to sv_lan, about not setting it from the command line.
 
 V1.0.0 11-19-2016
 

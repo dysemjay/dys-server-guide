@@ -3,9 +3,9 @@ Changelog
 
 Note that this file is intended as a general purpose changelog for the entire repository. A changelog specifically for guide.md is included in the file, although changes to it should be mentioned here. Due to the general nature of this file, changes are recorded with a revision number, rather than a complex version number.
 
-## TBD-TBD-2017 (R10)
+## 10-31-2017 (R10)
 
-- TODO: Update to guide.md (V2.1.1): Specify direct download rate.
+- Update to guide.md (V2.1.1): Clarify 'ConVar' contraction meaning, specify direct download rate, fix typo in Changelog section.
 - Add explanation of repository branches in README.md.
 - Add period to sentence in Changelog.md.
 
