@@ -651,9 +651,13 @@ Version numbers should be composed of 3 decimal places, each separated by a '.'.
 
 V2.1.1 10-31-2017
 
+* Remove unnecessary end of line spaces in Introduction section.
 * Clarify that 'ConVar' is a contraction of 'Console Variable' in the server.cfg (The primary configuration file) section.
+* Remove unnecessary end of line spaces in server.cfg (The primary configuration file) section.
 * Specify direct download rate in description of sv_allowdownload ConVar.
-* Fix typo in Changelog section.
+* Fix formatting in server.cfg (The primary configuration file) section.
+* Remove unnecessary end of line spaces in Miscellaneous Optimizations section.
+* Correct typo in Changelog section.
 
 V2.1.0 06-07-2017
 
