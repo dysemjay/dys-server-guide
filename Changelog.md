@@ -3,6 +3,10 @@ Changelog
 
 Note that this file is intended as a general purpose changelog for the entire repository. A changelog specifically for guide.md is included in the file, although changes to it should be mentioned here. Due to the general nature of this file, changes are recorded with a revision number, rather than a complex version number.
 
+## <TBD>-<TBD>-2017 (R11)
+
+- Update to guide.md (V2.1.2): Refine description of sv_allowdownload ConVar, expand description of sv_downloadurl ConVar.
+
 ## 10-31-2017 (R10)
 
 - Update to guide.md (V2.1.1): Remove unnecessary end of line spaces, clarify 'ConVar' contraction meaning, specify direct download rate, fix formatting in server.cfg (The primary configuration file) section, correct typo in Changelog section.

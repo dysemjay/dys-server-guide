@@ -161,13 +161,13 @@ The following is a list of common ConVars (console variables), and a description
   Sets the password to join the server.
 
 * `sv_allowdownload <0 or 1>` Default: 1  
-  Allows downloading of content (such as maps) directly from the server if set to 1. The download rate directly from the server seems to be capped at 25 kB/s or sv_maxrate; whichever us lower, If sv_downloadurl is set, then it will take precedence.
+  Allows downloading of content (such as maps) directly from the server if set to 1. The rate for this seems to be capped at 25 kB/s or sv_maxrate, if it is nonzero; whichever is lower. If sv_downloadurl is set, then the source specified by it will take precedence.
 
 * `sv_allowupload <0 or 1>` Default: 1  
   Allows uploading of content from the client, to the server if set to 1. Primarily used for sprays.
 
 * `sv_downloadurl "<url>"` Default: ""  
-  Download link for separate server to retrieve content from. Should work for http, and https.
+  Download link for separate server to retrieve content from. Should work for HTTP, HTTPS, and anonymous FTP. Clients will also follow HTTP (status code 3xx) redirects. TODO: Verify that FTP will work, and determine what HTTP version is used.
 
 * `log on`  
   Enables server logs.
@@ -648,6 +648,14 @@ Version numbers should be composed of 3 decimal places, each separated by a '.'.
 1. Count large scale changes, usually affecting many sections. These should majorly alter the content of the guide.
 2. Count major changes. These might be adding, removing, or otherwise rewriting substantial portions of sections.
 3. Count minor changes. These might be to correct typographical errors, or to make other localized changes.
+
+V2.1.2 <TBD>-<TBD>-2017
+
+* Clarify phrasing in description of sv_allowdownload ConVar.
+* Correct two typos in description of sv_allowdownload ConVar.
+* TODO: Include that an FTP URL may be used for the sv_downloadurl ConVar.
+* TODO: Include that HTTP redirects will be followed, in description of sv_downloadurl ConVar.
+* TODO: Specify HTTP version in description of sv_downloadurl ConVar.
 
 V2.1.1 10-31-2017
 
