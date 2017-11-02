@@ -649,7 +649,7 @@ Version numbers should be composed of 3 decimal places, each separated by a '.'.
 2. Count major changes. These might be adding, removing, or otherwise rewriting substantial portions of sections.
 3. Count minor changes. These might be to correct typographical errors, or to make other localized changes.
 
-V2.1.2 <TBD>-<TBD>-2017
+V2.1.2 11-01-2017
 
 * Clarify phrasing in description of sv_allowdownload ConVar.
 * Correct two typos in description of sv_allowdownload ConVar.

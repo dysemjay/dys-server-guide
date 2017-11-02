@@ -3,7 +3,7 @@ Changelog
 
 Note that this file is intended as a general purpose changelog for the entire repository. A changelog specifically for guide.md is included in the file, although changes to it should be mentioned here. Due to the general nature of this file, changes are recorded with a revision number, rather than a complex version number.
 
-## <TBD>-<TBD>-2017 (R11)
+## 11-01-2017 (R11)
 
 - Update to guide.md (V2.1.2): Refine and expand description of sv_allowdownload ConVar, expand description of sv_downloadurl ConVar.
 
