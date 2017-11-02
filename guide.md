@@ -167,7 +167,7 @@ The following is a list of common ConVars (console variables), and a description
   Allows uploading of content from the client, to the server if set to 1. Primarily used for sprays.
 
 * `sv_downloadurl "<url>"` Default: ""  
-  Download link for separate server to retrieve content from. Should work for HTTP, HTTPS, and anonymous FTP. Clients will also follow HTTP (status code 3xx) redirects. TODO: Verify that FTP will work, and determine what HTTP version is used.
+  Download link for separate server to retrieve content from. Should work for HTTP, and HTTPS (Note that in testing, problems were experienced with a self signed certificate.). Clients should also follow HTTP (status code 3xx) redirects.
 
 * `log on`  
   Enables server logs.
@@ -653,9 +653,8 @@ V2.1.2 <TBD>-<TBD>-2017
 
 * Clarify phrasing in description of sv_allowdownload ConVar.
 * Correct two typos in description of sv_allowdownload ConVar.
-* TODO: Include that an FTP URL may be used for the sv_downloadurl ConVar.
-* TODO: Include that HTTP redirects will be followed, in description of sv_downloadurl ConVar.
-* TODO: Specify HTTP version in description of sv_downloadurl ConVar.
+* Explain issue with self signed certificates for HTTPS, in description of sv_downloadurl ConVar.
+* Include that HTTP redirects will be followed, in description of sv_downloadurl ConVar.
 
 V2.1.1 10-31-2017
 

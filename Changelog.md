@@ -5,7 +5,7 @@ Note that this file is intended as a general purpose changelog for the entire re
 
 ## <TBD>-<TBD>-2017 (R11)
 
-- Update to guide.md (V2.1.2): Refine description of sv_allowdownload ConVar, expand description of sv_downloadurl ConVar.
+- Update to guide.md (V2.1.2): Refine and expand description of sv_allowdownload ConVar, expand description of sv_downloadurl ConVar.
 
 ## 10-31-2017 (R10)
 
